@@ -1,15 +1,8 @@
 # TDM Design System Web
 
-## ⚠️ Important: TypeScript Requirement
+Design system berbasis Nuxt Layer dengan komponen UI yang siap pakai, built dengan shadcn-vue dan Tailwind CSS 4.
 
-**TypeScript is required** in your consumer project. The design system uses TypeScript for type resolution in Vue components.
-
-```bash
-# Install TypeScript in your project (if not already installed)
-pnpm add -D typescript
-```
-
-> **Note**: If you see errors like `Failed to load TypeScript, which is required for resolving imported types`, make sure TypeScript is installed in your **consumer app** (not just in the layer).
+📚 **[Lihat Dokumentasi Lengkap & Contoh Komponen](https://design-system.digitalteam.id/)**
 
 ## Installation
 
@@ -28,109 +21,83 @@ yarn add @tdm/design-system-web
 
 ### Via GitHub
 
-Add to your `package.json`:
-
-```json
-{
-  "dependencies": {
-    "@tdm/design-system-web": "github:rayfajars/testing-nuxt-layers#main"
-  }
-}
-```
-
-Or install directly:
-
 ```bash
 # npm
-npm install github:rayfajars/testing-nuxt-layers
+npm install github:rayfajars/testing-nuxt-layers#main
 
 # pnpm
-pnpm add github:rayfajars/testing-nuxt-layers
+pnpm add github:rayfajars/testing-nuxt-layers#main
 
 # yarn
-yarn add github:rayfajars/testing-nuxt-layers
+yarn add github:rayfajars/testing-nuxt-layers#main
 ```
 
 ### Via Local Path
 
 ```bash
-# npm
-npm install file:../design-system-web
-
-# pnpm
 pnpm add file:../design-system-web
-
-# yarn
-yarn add file:../design-system-web
 ```
 
-## Usage
+## ⚠️ Important: TypeScript Requirement
 
-### 1. Add Layer to Your Nuxt Config
+**TypeScript wajib diinstall** di consumer project Anda:
 
-In your `nuxt.config.ts`:
+```bash
+pnpm add -D typescript
+```
+
+## Quick Start
+
+### 1. Extend Layer di Nuxt Config
+
+`nuxt.config.ts`:
 
 ```typescript
 export default defineNuxtConfig({
   extends: ["@tdm/design-system-web"],
-
-  // Your project configuration
 });
 ```
 
-### 2. Use Components
-
-Components are auto-imported and ready to use:
+### 2. Gunakan Components (Auto-imported)
 
 ```vue
 <template>
   <div>
-    <Button variant="default" @click="handleClick"> Click me </Button>
-
-    <Input v-model="name" placeholder="Enter your name" />
-
-    <Dialog>
-      <DialogTrigger as-child>
-        <Button>Open Dialog</Button>
-      </DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Dialog Title</DialogTitle>
-        </DialogHeader>
-        <!-- Dialog content -->
-      </DialogContent>
-    </Dialog>
+    <Button variant="default" @click="handleClick">Click me</Button>
+    <Input v-model="name" placeholder="Enter name" />
   </div>
 </template>
 
 <script setup lang="ts">
 const name = ref("");
-
-function handleClick() {
-  console.log("Button clicked!");
-}
+const handleClick = () => console.log("Clicked!");
 </script>
 ```
 
-### 3. Use Utilities
-
-Utilities are also auto-imported:
+### 3. Gunakan Utilities
 
 ```vue
 <script setup lang="ts">
 import { cn } from "@tdm/design-system-web/lib/utils";
 
-const classes = cn(
-  "base-class",
-  "conditional-class",
-  someCondition && "conditional-class-2"
-);
+const classes = cn("base-class", condition && "conditional-class");
 </script>
 ```
 
-### 4. Access Design Tokens
+## Available Components
 
-The design system's Tailwind configuration and CSS variables are automatically available:
+**50+ komponen siap pakai**, termasuk:
+
+- **Form**: Button, Input, Select, Checkbox, RadioGroup, Switch, DatePicker, Upload
+- **Layout**: Dialog, Popover, Tabs, Table, Divider
+- **Feedback**: Alert, Badge, Loader, Snackbar, Sonner (Toast)
+- **Advanced**: Calendar, Command, Pagination, Avatar, Chips
+
+📖 **[Lihat semua komponen dengan contoh di Storybook](https://design-system.digitalteam.id/)**
+
+## Design Tokens
+
+Design tokens otomatis tersedia di consumer project:
 
 ```vue
 <template>
@@ -141,183 +108,37 @@ The design system's Tailwind configuration and CSS variables are automatically a
 </template>
 ```
 
-## Available Components
-
-### Form Components
-
-- `Button` - Button with variants and sizes
-- `Input` - Text input field
-- `Textarea` - Multi-line text input
-- `Checkbox` - Checkbox input
-- `RadioGroup` - Radio button group
-- `Switch` - Toggle switch
-- `Select` - Dropdown select
-- `NativeSelect` - Native HTML select
-- `Label` - Form label
-- `Form` - Form components with validation
-
-### Layout Components
-
-- `Dialog` - Modal dialog
-- `Popover` - Popover component
-- `Tabs` - Tab navigation
-- `Table` - Data table
-
-### Feedback Components
-
-- `Alert` - Alert messages
-- `Badge` - Status badges
-- `Loader` - Loading spinner
-- `Sonner` - Toast notifications
-- `Snackbar` - Snackbar notifications
-
-### Advanced Components
-
-- `Calendar` - Date picker calendar
-- `DatePicker` - Date selection
-- `Upload` - File upload
-- `Command` - Command palette
-- `Pagination` - Pagination controls
-- `Avatar` - User avatar
-- `Chips` - Chip/tag component
-- `Divider` - Visual divider
-
-### Utility Components
-
-- `Text` - Typography component
-- `TableToolbar` - Table toolbar
-
-## Design Tokens
-
-The design system includes comprehensive design tokens:
-
-### Colors
-
-- **Primary**: `primary`, `primary-{0-90}` (opacity variants)
-- **Semantic**: `success`, `warning`, `info`, `processing`
-- **Grays**: `gray-{100-900}`
-- **Status Colors**: `red-*`, `green-*`, `blue-*`, `orange-*`
-- **Text**: `text-high`, `text-medium`, `text-low`, `text-very-low`
-- **Container**: `container-white`, `container-black`, `container-high/medium/low`
-
-### Typography
-
-- **Fonts**: `font-monteserrat`, `font-opensans`
-
-### Shadows
-
-- `shadow-sm`, `shadow-md`, `shadow-lg`, `shadow-xl`, `shadow-2xl`
-
-## Development
-
-### Layer Setup
-
-This project is configured as a Nuxt Layer following best practices. For detailed information on how the layer is configured and how to use it in your projects, see [LAYER_SETUP_GUIDE.md](./LAYER_SETUP_GUIDE.md).
-
-### Setup
-
-```bash
-# Install dependencies
-pnpm install
-
-# Prepare Nuxt types
-pnpm run dev:prepare
-
-# Start development server (Layer mode)
-pnpm dev
-
-# Start playground for testing (Playground mode)
-pnpm run dev:playground
-
-# Run Storybook
-pnpm storybook
-```
-
-### Build
-
-```bash
-# Build for production
-pnpm build
-
-# Build Storybook
-pnpm build-storybook
-```
-
-### Development Modes
-
-1. **Layer Mode** (`pnpm dev`): Runs the layer at the root directory, useful for developing the layer itself.
-2. **Playground Mode** (`pnpm run dev:playground`): Runs the `.playground` folder to test the layer in isolation.
-3. **Storybook** (`pnpm storybook`): View and develop components in Storybook.
+**Colors**: `primary`, `success`, `warning`, `info`, `gray-{100-900}`, `text-{high|medium|low}`  
+**Typography**: `font-monteserrat`, `font-opensans`  
+**Shadows**: `shadow-{sm|md|lg|xl|2xl}`
 
 ## Troubleshooting
 
-### ❌ Error: "Failed to load TypeScript"
+### ❌ "Failed to load TypeScript"
 
-**Full Error**:
-
-```
-[@vue/compiler-sfc] Failed to load TypeScript, which is required for resolving imported types.
-Please make sure "TypeScript" is installed as a project dependency.
-```
-
-**Solution**: Install TypeScript in your **consumer app** (the app using this layer):
+Install TypeScript di **consumer app**:
 
 ```bash
-# In your consumer app directory
 pnpm add -D typescript
-
-# Then restart dev server
 pnpm run dev
 ```
 
-**Why**: The design system uses TypeScript types in Vue components. Your consumer app needs TypeScript to resolve these types.
+### 🔧 Components Tidak Auto-Import
 
-### 🔧 Components Not Auto-Importing
+1. Pastikan layer di-extend di `nuxt.config.ts`
+2. Jalankan `pnpm run dev`
+3. Restart IDE/dev server
 
-If components are not being auto-imported:
-
-1. Make sure the layer is extended in `nuxt.config.ts`:
-
-   ```typescript
-   export default defineNuxtConfig({
-     extends: ["@tdm/design-system-web"],
-   });
-   ```
-
-2. Run `nuxt prepare`:
-
-   ```bash
-   pnpm run dev:prepare
-   ```
-
-3. Restart your IDE/dev server
-
-### 🎨 Styles Not Applying
-
-If styles are not showing:
-
-1. Clear cache and restart:
-
-   ```bash
-   rm -rf .nuxt node_modules/.cache node_modules/.vite
-   pnpm run dev
-   ```
-
-2. Make sure you're not overriding the layer's CSS in your app
-
-### 💥 Import Resolution Errors
-
-If you see `Failed to resolve import "@/lib/utils"`:
+### 🎨 Styles Tidak Muncul
 
 ```bash
-# Clear all caches
 rm -rf .nuxt node_modules/.cache node_modules/.vite
 pnpm run dev
 ```
 
-### 🌊 Hydration Errors
+### 🌊 Hydration Errors (DatePicker, Calendar)
 
-For components like DatePicker or Calendar, wrap in `<ClientOnly>`:
+Wrap dengan `<ClientOnly>`:
 
 ```vue
 <ClientOnly>
@@ -325,22 +146,26 @@ For components like DatePicker or Calendar, wrap in `<ClientOnly>`:
 </ClientOnly>
 ```
 
-### 📚 More Help
+## Development
 
-- See [USAGE_EXAMPLE.md](./USAGE_EXAMPLE.md) for detailed examples
-- See [LAYER_SETUP_GUIDE.md](./LAYER_SETUP_GUIDE.md) for technical setup
-- Check [Storybook](http://localhost:6006) for component docs (`pnpm storybook`)
+```bash
+# Install dependencies
+pnpm install
 
-## Contributing
+# Development mode
+pnpm dev
 
-Please ensure all components follow the established patterns and include proper TypeScript types.
+# Playground (testing layer)
+pnpm run dev:playground
+
+# Storybook
+pnpm storybook
+```
+
+## Links
+
+- 📚 [Dokumentasi & Storybook](https://design-system.digitalteam.id/)
 
 ## License
 
 MIT
-
-## Support
-
-For issues and questions, please open an issue on GitHub.
-
-# testing-nuxt-layers
