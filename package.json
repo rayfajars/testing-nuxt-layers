@@ -30,12 +30,6 @@
   },
   "main": "./nuxt.config.ts",
   "types": "./nuxt.config.ts",
-  "files": [
-    "app",
-    "nuxt.config.ts",
-    "components.json",
-    "README.md"
-  ],
   "scripts": {
     "dev": "nuxi dev",
     "dev:playground": "nuxi dev .playground",
