@@ -16,6 +16,11 @@ export default defineNuxtConfig({
 
   vite: {
     plugins: [tailwindcss()],
+    resolve: {
+      alias: {
+        "@": join(currentDir, "./app"),
+      },
+    },
   },
 
   shadcn: {
@@ -54,7 +59,7 @@ export default defineNuxtConfig({
 
   // Alias configuration for consuming projects
   alias: {
-    "@": currentDir,
+    "@": join(currentDir, "./app"),
     "@tdm/design-system": currentDir,
   },
 

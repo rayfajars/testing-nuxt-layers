@@ -16,6 +16,7 @@ Make sure you have installed the following:
 
 - Node.js (v18 or higher)
 - npm, pnpm, yarn, or bun
+- TypeScript (v5.0 or higher) - **Required for type resolution**
 - A Nuxt 3 project (or create a new one)
 
 ## Layer Configuration
@@ -238,6 +239,44 @@ build: {
 
 ## Troubleshooting
 
+### Import Resolution Errors
+
+If you see errors like `Failed to resolve import "@/lib/utils"` when consuming the layer:
+
+**Cause**: The layer uses `@` alias to reference internal modules. This is handled automatically by the layer configuration.
+
+**Solution 1** (Recommended): Clear cache and restart:
+
+```bash
+# In your consumer app directory
+rm -rf .nuxt node_modules/.cache node_modules/.vite
+pnpm run dev
+```
+
+**Solution 2**: If still having issues, check that your consumer app's `nuxt.config.ts` correctly extends the layer:
+
+```typescript
+export default defineNuxtConfig({
+  extends: ["../design-system-web"], // or "@tdm/design-system-web"
+});
+```
+
+The layer configuration already includes both Nuxt and Vite alias resolution:
+
+```typescript
+// Layer's nuxt.config.ts (already configured)
+vite: {
+  resolve: {
+    alias: {
+      "@": join(currentDir, "./app"),
+    },
+  },
+},
+alias: {
+  "@": join(currentDir, "./app"),
+}
+```
+
 ### Styles Not Applying
 
 If styles are not applying in your consuming project, ensure you're not overriding the layer's CSS. The layer's Tailwind configuration should be sufficient.
@@ -248,6 +287,34 @@ Make sure you've run `nuxt prepare` or started the dev server at least once to g
 
 ```bash
 pnpm run dev:prepare
+```
+
+### TypeScript Not Found Error
+
+If you see an error like `Failed to load TypeScript, which is required for resolving imported types`:
+
+**Cause**: Consumer apps must have TypeScript installed as a peer dependency.
+
+**Solution**: Install TypeScript in your consumer app:
+
+```bash
+# pnpm
+pnpm add -D typescript
+
+# npm
+npm install -D typescript
+
+# yarn
+yarn add -D typescript
+
+# bun
+bun add -D typescript
+```
+
+Then restart your dev server:
+
+```bash
+pnpm run dev
 ```
 
 ### TypeScript Errors

@@ -12,6 +12,17 @@ A comprehensive Nuxt layer containing reusable UI components, utilities, and des
 - 📱 **Responsive** - Mobile-first responsive components
 - ♿ **Accessible** - ARIA compliant components
 
+## ⚠️ Important: TypeScript Requirement
+
+**TypeScript is required** in your consumer project. The design system uses TypeScript for type resolution in Vue components.
+
+```bash
+# Install TypeScript in your project (if not already installed)
+pnpm add -D typescript
+```
+
+> **Note**: If you see errors like `Failed to load TypeScript, which is required for resolving imported types`, make sure TypeScript is installed in your **consumer app** (not just in the layer).
+
 ## Installation
 
 ### Via npm (Recommended for published packages)
@@ -66,6 +77,8 @@ yarn add file:../design-system-web
 ```
 
 ## Usage
+
+> 📖 **For complete examples and detailed usage guide, see [USAGE_EXAMPLE.md](./USAGE_EXAMPLE.md)**
 
 ### 1. Add Layer to Your Nuxt Config
 
@@ -249,6 +262,88 @@ pnpm build-storybook
 1. **Layer Mode** (`pnpm dev`): Runs the layer at the root directory, useful for developing the layer itself.
 2. **Playground Mode** (`pnpm run dev:playground`): Runs the `.playground` folder to test the layer in isolation.
 3. **Storybook** (`pnpm storybook`): View and develop components in Storybook.
+
+## Troubleshooting
+
+### ❌ Error: "Failed to load TypeScript"
+
+**Full Error**:
+
+```
+[@vue/compiler-sfc] Failed to load TypeScript, which is required for resolving imported types.
+Please make sure "TypeScript" is installed as a project dependency.
+```
+
+**Solution**: Install TypeScript in your **consumer app** (the app using this layer):
+
+```bash
+# In your consumer app directory
+pnpm add -D typescript
+
+# Then restart dev server
+pnpm run dev
+```
+
+**Why**: The design system uses TypeScript types in Vue components. Your consumer app needs TypeScript to resolve these types.
+
+### 🔧 Components Not Auto-Importing
+
+If components are not being auto-imported:
+
+1. Make sure the layer is extended in `nuxt.config.ts`:
+
+   ```typescript
+   export default defineNuxtConfig({
+     extends: ["@tdm/design-system-web"],
+   });
+   ```
+
+2. Run `nuxt prepare`:
+
+   ```bash
+   pnpm run dev:prepare
+   ```
+
+3. Restart your IDE/dev server
+
+### 🎨 Styles Not Applying
+
+If styles are not showing:
+
+1. Clear cache and restart:
+
+   ```bash
+   rm -rf .nuxt node_modules/.cache node_modules/.vite
+   pnpm run dev
+   ```
+
+2. Make sure you're not overriding the layer's CSS in your app
+
+### 💥 Import Resolution Errors
+
+If you see `Failed to resolve import "@/lib/utils"`:
+
+```bash
+# Clear all caches
+rm -rf .nuxt node_modules/.cache node_modules/.vite
+pnpm run dev
+```
+
+### 🌊 Hydration Errors
+
+For components like DatePicker or Calendar, wrap in `<ClientOnly>`:
+
+```vue
+<ClientOnly>
+  <DatePicker v-model="date" />
+</ClientOnly>
+```
+
+### 📚 More Help
+
+- See [USAGE_EXAMPLE.md](./USAGE_EXAMPLE.md) for detailed examples
+- See [LAYER_SETUP_GUIDE.md](./LAYER_SETUP_GUIDE.md) for technical setup
+- Check [Storybook](http://localhost:6006) for component docs (`pnpm storybook`)
 
 ## Contributing
 
