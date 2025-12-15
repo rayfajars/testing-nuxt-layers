@@ -37,8 +37,10 @@
     "README.md"
   ],
   "scripts": {
+    "dev": "nuxi dev",
+    "dev:playground": "nuxi dev .playground",
+    "dev:prepare": "nuxt prepare",
     "build": "nuxt build",
-    "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",

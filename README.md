@@ -211,14 +211,24 @@ The design system includes comprehensive design tokens:
 
 ## Development
 
+### Layer Setup
+
+This project is configured as a Nuxt Layer following best practices. For detailed information on how the layer is configured and how to use it in your projects, see [LAYER_SETUP_GUIDE.md](./LAYER_SETUP_GUIDE.md).
+
 ### Setup
 
 ```bash
 # Install dependencies
 pnpm install
 
-# Start development server
+# Prepare Nuxt types
+pnpm run dev:prepare
+
+# Start development server (Layer mode)
 pnpm dev
+
+# Start playground for testing (Playground mode)
+pnpm run dev:playground
 
 # Run Storybook
 pnpm storybook
@@ -233,6 +243,12 @@ pnpm build
 # Build Storybook
 pnpm build-storybook
 ```
+
+### Development Modes
+
+1. **Layer Mode** (`pnpm dev`): Runs the layer at the root directory, useful for developing the layer itself.
+2. **Playground Mode** (`pnpm run dev:playground`): Runs the `.playground` folder to test the layer in isolation.
+3. **Storybook** (`pnpm storybook`): View and develop components in Storybook.
 
 ## Contributing
 

@@ -1,19 +1,18 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import tailwindcss from "@tailwindcss/vite";
+import { fileURLToPath } from "node:url";
+import { dirname, join } from "node:path";
+
+const currentDir = dirname(fileURLToPath(import.meta.url));
 
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
-
-  app: {
-    pageTransition: { name: "page", mode: "out-in" },
-    layoutTransition: { name: "layout", mode: "out-in" },
-  },
 
   devtools: { enabled: true },
 
   modules: ["@nuxt/eslint", "@nuxt/image", "shadcn-nuxt", "@vueuse/nuxt"],
 
-  css: ["~/assets/css/tailwind.css"],
+  css: [join(currentDir, "./app/assets/css/tailwind.css")],
 
   vite: {
     plugins: [tailwindcss()],
@@ -28,30 +27,35 @@ export default defineNuxtConfig({
      * Directory that the component lives in.
      * @default "./components/ui"
      */
-    componentDir: "./app/components/ui",
+    componentDir: join(currentDir, "./app/components/ui"),
   },
 
   // Layer configuration - expose components for auto-import
   components: [
     {
-      path: "~/components/ui",
+      path: join(currentDir, "./app/components/ui"),
       pathPrefix: false,
       global: true,
     },
     {
-      path: "~/components/sample",
+      path: join(currentDir, "./app/components/sample"),
       pathPrefix: false,
     },
   ],
 
   // Auto-import composables and utilities
   imports: {
-    dirs: ["composables", "utils", "lib"],
+    dirs: [
+      join(currentDir, "./app/composables"),
+      join(currentDir, "./app/utils"),
+      join(currentDir, "./app/lib"),
+    ],
   },
 
   // Alias configuration for consuming projects
   alias: {
-    "@tdm/design-system": "~/",
+    "@": currentDir,
+    "@tdm/design-system": currentDir,
   },
 
   routeRules: {
@@ -64,5 +68,10 @@ export default defineNuxtConfig({
     public: {
       apiBaseUrl: process.env.NUXT_PUBLIC_BASE_API_URL,
     },
+  },
+
+  // Transpile external dependencies to prevent hydration errors
+  build: {
+    transpile: ["reka-ui", "vee-validate"],
   },
 });
