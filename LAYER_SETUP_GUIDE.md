@@ -132,7 +132,7 @@ You can also use it directly from GitHub:
 
 ```typescript
 export default defineNuxtConfig({
-  extends: ["github:your-org/design-system-web"],
+  extends: ["github:rayfajars/testing-nuxt-layers"],
 });
 ```
 

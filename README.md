@@ -45,7 +45,7 @@ Add to your `package.json`:
 ```json
 {
   "dependencies": {
-    "@tdm/design-system-web": "github:your-org/design-system-web#main"
+    "@tdm/design-system-web": "github:rayfajars/testing-nuxt-layers#main"
   }
 }
 ```
@@ -54,13 +54,13 @@ Or install directly:
 
 ```bash
 # npm
-npm install github:your-org/design-system-web
+npm install github:rayfajars/testing-nuxt-layers
 
 # pnpm
-pnpm add github:your-org/design-system-web
+pnpm add github:rayfajars/testing-nuxt-layers
 
 # yarn
-yarn add github:your-org/design-system-web
+yarn add github:rayfajars/testing-nuxt-layers
 ```
 
 ### Via Local Path (For local development)
@@ -356,4 +356,5 @@ MIT
 ## Support
 
 For issues and questions, please open an issue on GitHub.
+
 # testing-nuxt-layers

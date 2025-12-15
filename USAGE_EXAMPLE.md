@@ -69,7 +69,7 @@ pnpm add -D typescript
 ### Method 2: Via GitHub
 
 ```bash
-pnpm add github:your-org/design-system-web
+pnpm add github:rayfajars/testing-nuxt-layers
 pnpm add -D typescript
 ```
 
@@ -78,7 +78,7 @@ Or add to `package.json`:
 ```json
 {
   "dependencies": {
-    "@tdm/design-system-web": "github:your-org/design-system-web#main"
+    "@tdm/design-system-web": "github:rayfajars/testing-nuxt-layers#main"
   },
   "devDependencies": {
     "typescript": "^5.0.0"
