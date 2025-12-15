@@ -1,17 +1,5 @@
 # TDM Design System Web
 
-A comprehensive Nuxt layer containing reusable UI components, utilities, and design tokens for TDM projects.
-
-## Features
-
-- 🎨 **Rich UI Components** - 30+ pre-built components based on Reka UI & Shadcn
-- 🎯 **Design Tokens** - Consistent colors, spacing, and typography
-- 🔧 **Utilities** - Helper functions and composables
-- 📦 **Auto-imports** - Components and utilities automatically available
-- 🌗 **Dark Mode** - Built-in dark mode support
-- 📱 **Responsive** - Mobile-first responsive components
-- ♿ **Accessible** - ARIA compliant components
-
 ## ⚠️ Important: TypeScript Requirement
 
 **TypeScript is required** in your consumer project. The design system uses TypeScript for type resolution in Vue components.
@@ -25,7 +13,7 @@ pnpm add -D typescript
 
 ## Installation
 
-### Via npm (Recommended for published packages)
+### Via npm
 
 ```bash
 # npm
@@ -38,7 +26,7 @@ pnpm add @tdm/design-system-web
 yarn add @tdm/design-system-web
 ```
 
-### Via GitHub (For development or unpublished versions)
+### Via GitHub
 
 Add to your `package.json`:
 
@@ -63,7 +51,7 @@ pnpm add github:rayfajars/testing-nuxt-layers
 yarn add github:rayfajars/testing-nuxt-layers
 ```
 
-### Via Local Path (For local development)
+### Via Local Path
 
 ```bash
 # npm
@@ -77,8 +65,6 @@ yarn add file:../design-system-web
 ```
 
 ## Usage
-
-> 📖 **For complete examples and detailed usage guide, see [USAGE_EXAMPLE.md](./USAGE_EXAMPLE.md)**
 
 ### 1. Add Layer to Your Nuxt Config
 
