@@ -1,0 +1,42 @@
+# Development files
+.nuxt
+.output
+.vscode
+.storybook
+storybook-static
+node_modules
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Build artifacts
+dist
+build
+
+# Testing
+coverage
+*.log
+
+# IDE
+.idea
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Storybook
+*.stories.ts
+*.stories.js
+*.stories.vue
+
+# Example and docs (include README.md)
+example/
+docs/
+
+# Git
+.git
+.gitignore
